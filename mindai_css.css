@@ -55,6 +55,18 @@ body {
   }
 }
 
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -163,14 +175,24 @@ body {
   }
 }
 
-/* Login Screen */
-.login-screen {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: var(--gradient-primary);
-  position: relative;
+/* Telas */
+.screen {
+    display: none; /* Oculta todas as telas por padrão */
+    animation: fadeIn 0.8s ease-out; /* Animação padrão para entrada */
+}
+
+.screen.active {
+    display: block; /* Mostra a tela ativa */
+}
+
+/* A tela de login precisa de um display flex para centralizar o card */
+#loginScreen.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--gradient-primary);
+    position: relative;
 }
 
 .login-card {
@@ -185,6 +207,10 @@ body {
   animation: slideUp 0.8s ease-out;
   position: relative;
   z-index: 2;
+}
+
+.login-screen.fade-out {
+    animation: fadeOut 0.5s ease-out forwards;
 }
 
 .logo {
@@ -368,10 +394,8 @@ body {
 }
 
 /* Dashboard Screen */
-.dashboard {
-  display: none; /* Controlado via JS */
+#dashboard {
   padding: 20px 0 120px; /* Adicionado padding-bottom para não sobrepor a nav */
-  animation: fadeIn 0.8s ease-out;
 }
 
 .dashboard-header {
@@ -761,6 +785,7 @@ body {
   background: rgba(13, 91, 119, 0.1);
   border-radius: 12px;
   transition: var(--transition);
+  cursor: pointer; /* Adicionado cursor para indicar que é clicável */
 }
 
 .task-item:hover {
@@ -776,13 +801,12 @@ body {
   transition: var(--transition);
   position: relative;
   flex-shrink: 0;
-  -webkit-appearance: none;
-  appearance: none;
 }
 
 .task-checkbox.checked {
   background: var(--light-blue);
   border-color: var(--light-blue);
+  animation: taskComplete 0.5s ease-out;
 }
 
 .task-checkbox.checked::after {
@@ -801,7 +825,7 @@ body {
   transition: var(--transition);
 }
 
-.task-checkbox.checked + .task-text {
+.task-item.checked .task-text {
   text-decoration: line-through;
   opacity: 0.5;
 }
@@ -823,10 +847,8 @@ body {
 }
 
 /* Tela de Notas Pessoais */
-.notes-screen {
-  display: none; /* Controlado via JS */
+#notesScreen {
   padding: 20px 0 120px;
-  animation: fadeIn 0.8s ease-out;
 }
 
 .notes-header {
@@ -926,8 +948,7 @@ body {
 }
 
 /* Barra de Navegação */
-.navigation {
-  display: none; /* Controlado via JS */
+#navigation {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -936,11 +957,19 @@ body {
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-top: 1px solid rgba(58, 204, 249, 0.2);
+  display: flex;
   justify-content: space-around;
   padding: 10px 0;
   box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
   z-index: 1000;
+  transform: translateY(100%); /* Começa escondida */
+  transition: transform 0.5s ease-out;
 }
+
+#navigation.visible {
+    transform: translateY(0);
+}
+
 
 .nav-btn {
   background: none;
