@@ -88,7 +88,7 @@ body {
   }
 }
 
-/* Animação para troca de frase (MODIFICADO) */
+/* Animação para troca de frase */
 @keyframes quoteChange {
   0% {
     opacity: 1;
@@ -688,21 +688,26 @@ body {
   height: 150px;
   margin-bottom: 15px;
   padding: 0 10px;
-  gap: 8px; /* Adicionado para espaçamento */
+  gap: 8px;
 }
 
+/* ===== MODIFICAÇÃO PARA ANIMAÇÃO SUAVE (INÍCIO) ===== */
 .chart-bar {
-  width: 12%; /* Ajustado */
-  background: var(--gradient-blue);
+  width: 12%;
   border-radius: 5px 5px 0 0;
   opacity: 0.8;
+  background: var(--gradient-blue);
+  /* Usando a variável global para consistência com a barra de navegação */
   transition: var(--transition);
 }
+
 .chart-bar:hover {
   opacity: 1;
   background: var(--gradient-orange);
   transform: translateY(-10px);
 }
+/* ===== MODIFICAÇÃO PARA ANIMAÇÃO SUAVE (FIM) ===== */
+
 
 .chart-info {
   display: flex;
