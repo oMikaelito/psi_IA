@@ -847,4 +847,47 @@ body {
   background: rgba(9, 38, 49, 0.85);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border-top: 1px solid rgba(58, 20
+  border-top: 1px solid rgba(58, 204, 249, 0.2);
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transform: translateY(100%);
+  transition: transform 0.5s ease-out;
+}
+
+#navigation.visible {
+    transform: translateY(0);
+}
+
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: rgba(254, 254, 254, 0.7);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  transition: var(--transition);
+  border-radius: 8px;
+  font-size: 1.5rem; /* Tamanho do ícone */
+}
+
+.nav-btn span {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.nav-btn:hover {
+  color: var(--light-gray);
+  background: rgba(58, 204, 249, 0.1);
+}
+
+.nav-btn.active {
+  color: var(--orange);
+  transform: translateY(-5px);
+}
