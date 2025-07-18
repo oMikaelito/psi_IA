@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- LÓGICA DAS PARTÍCULAS FLUTUANTES ---
   if (particlesContainer) {
-    const particleCount = 40; // Aumente para ter mais partículas!
+    const particleCount = 80; // Aumentado para ter mais partículas!
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement("div");
       particle.className = "particle";
@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // 2. Aguarda a animação terminar para trocar de tela
       setTimeout(() => {
         loginScreen.classList.remove("active"); // Esconde a tela de login
+        loginScreen.classList.remove("fade-out"); // Limpa a classe da animação para garantir que não conflite no futuro
         dashboardScreen.classList.add("active"); // Mostra o painel
         navigation.classList.add("visible"); // Mostra a barra de navegação
       }, 500); // Duração deve ser a mesma da animação no CSS
