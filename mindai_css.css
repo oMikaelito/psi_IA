@@ -691,22 +691,36 @@ body {
   gap: 8px;
 }
 
-/* ===== MODIFICAÇÃO PARA ANIMAÇÃO SUAVE (INÍCIO) ===== */
+/* ===== ANIMAÇÃO DE COR SUAVE (INÍCIO) ===== */
 .chart-bar {
   width: 12%;
   border-radius: 5px 5px 0 0;
-  opacity: 0.8;
   background: var(--gradient-blue);
-  /* Usando a variável global para consistência com a barra de navegação */
-  transition: var(--transition);
+  position: relative; /* Necessário para o pseudo-elemento */
+  overflow: hidden; /* Garante que o ::before não vaze */
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transição apenas para o pulo */
+}
+
+.chart-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-orange);
+  opacity: 0; /* Começa invisível */
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transição apenas para a cor */
 }
 
 .chart-bar:hover {
-  opacity: 1;
-  background: var(--gradient-orange);
-  transform: translateY(-10px);
+  transform: translateY(-10px); /* Efeito de pular */
 }
-/* ===== MODIFICAÇÃO PARA ANIMAÇÃO SUAVE (FIM) ===== */
+
+.chart-bar:hover::before {
+  opacity: 1; /* Torna a camada laranja visível */
+}
+/* ===== ANIMAÇÃO DE COR SUAVE (FIM) ===== */
 
 
 .chart-info {
