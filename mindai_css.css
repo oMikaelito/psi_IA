@@ -696,7 +696,7 @@ body {
   background: var(--gradient-blue);
   border-radius: 5px 5px 0 0;
   opacity: 0.8;
-  transition: all 0.3s ease; /* Transição geral */
+  transition: background 0.3s ease, opacity 0.3s ease; /* MODIFICADO */
 }
 .chart-bar:hover {
   opacity: 1;
