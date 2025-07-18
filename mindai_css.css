@@ -156,6 +156,7 @@ body {
 .screen {
     display: none;
     animation: fadeIn 0.8s ease-out;
+    padding-bottom: 120px; /* Espaço para a barra de navegação */
 }
 
 .screen.active {
@@ -169,6 +170,7 @@ body {
     min-height: 100vh;
     background: var(--gradient-primary);
     position: relative;
+    padding-bottom: 0; /* Tela de login não precisa de padding inferior */
 }
 
 .login-card {
@@ -365,7 +367,7 @@ body {
 
 /* Dashboard Screen */
 #dashboard {
-  padding: 20px 0 120px;
+  padding-top: 20px;
 }
 
 .dashboard-header {
@@ -554,6 +556,10 @@ body {
   font-size: 1.5rem;
   box-shadow: var(--shadow-soft);
   flex-shrink: 0;
+}
+
+.card-icon .material-symbols-outlined {
+    font-size: 1.8rem;
 }
 
 .calendar-icon {
@@ -826,6 +832,76 @@ body {
   background-color: var(--teal);
 }
 
+/* --- ESTILOS DA TELA DO DIÁRIO --- */
+#diaryScreen {
+  padding-top: 30px;
+}
+
+.diary-card {
+  background: rgba(9, 38, 49, 0.9);
+  border-radius: var(--border-radius);
+  padding: 30px;
+  border: 1px solid rgba(58, 204, 249, 0.2);
+  box-shadow: var(--shadow-medium);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.diary-prompt {
+  color: rgba(254, 254, 254, 0.8);
+  margin-bottom: 20px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+#diaryEntry {
+  width: 100%;
+  min-height: 250px;
+  padding: 16px;
+  border: 2px solid rgba(58, 204, 249, 0.3);
+  border-radius: 12px;
+  background: rgba(13, 91, 119, 0.2);
+  color: var(--light-gray);
+  font-size: 16px;
+  transition: var(--transition);
+  margin-bottom: 25px;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.6;
+}
+
+#diaryEntry:focus {
+  outline: none;
+  border-color: var(--orange);
+  background: rgba(13, 91, 119, 0.3);
+  box-shadow: 0 0 0 3px rgba(247, 153, 49, 0.1);
+}
+
+#diaryEntry::placeholder {
+  color: rgba(254, 254, 254, 0.5);
+}
+
+#saveDiaryBtn {
+    margin-bottom: 0; /* Remover margem inferior no botão do diário */
+}
+
+/* --- ESTILOS DAS TELAS DE PLACEHOLDER --- */
+.placeholder-card {
+    text-align: center;
+    margin-top: 50px;
+    background: rgba(9, 38, 49, 0.9);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    border: 1px solid rgba(58, 204, 249, 0.2);
+    box-shadow: var(--shadow-medium);
+    max-width: 600px;
+    margin: 50px auto 0;
+}
+.placeholder-card h2 {
+    color: var(--orange);
+    margin-bottom: 15px;
+}
+
 /* Barra de Navegação */
 #navigation {
   position: fixed;
@@ -862,7 +938,11 @@ body {
   padding: 5px 10px;
   transition: var(--transition);
   border-radius: 8px;
-  font-size: 1.5rem; /* Tamanho do ícone */
+  min-width: 60px; /* Garante espaço para o texto */
+}
+
+.nav-btn .material-symbols-outlined {
+    font-size: 1.8rem; /* Tamanho do ícone */
 }
 
 .nav-btn span {
