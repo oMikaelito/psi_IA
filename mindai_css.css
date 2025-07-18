@@ -323,12 +323,59 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
-  margin-bottom: 20px;
 }
 
 .login-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(247, 153, 49, 0.4);
+}
+
+.divider-container {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+  color: rgba(254, 254, 254, 0.5);
+}
+
+.divider-container .line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: rgba(58, 204, 249, 0.2);
+}
+
+.divider-container span {
+  padding: 0 15px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.social-login-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.social-login-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(13, 91, 119, 0.2);
+  border: 1px solid rgba(58, 204, 249, 0.3);
+  color: var(--light-gray);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.social-login-btn:hover {
+  background: rgba(13, 91, 119, 0.4);
+  border-color: var(--light-blue);
+  transform: translateY(-2px);
 }
 
 .login-footer {
@@ -337,6 +384,7 @@ body {
   color: rgba(254, 254, 254, 0.6);
   border-top: 1px solid rgba(58, 204, 249, 0.2);
   padding-top: 20px;
+  margin-top: 20px;
 }
 
 .test-credentials {
