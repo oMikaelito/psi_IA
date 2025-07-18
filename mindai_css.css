@@ -870,11 +870,6 @@ body {
   font-weight: 500;
 }
 
-.nav-btn .material-symbols-outlined {
-    font-size: 1.8rem; /* Ajuste o tamanho do ícone aqui */
-}
-
-
 .nav-btn:hover {
   color: var(--light-gray);
   background: rgba(58, 204, 249, 0.1);
