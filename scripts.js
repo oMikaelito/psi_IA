@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   // --- SELETORES DO DOM ---
+  const screens = document.querySelectorAll('.screen');
   const loginScreen = document.getElementById("loginScreen");
   const dashboardScreen = document.getElementById("dashboard");
+  const journalScreen = document.getElementById("journalScreen");
   const loginForm = document.getElementById("loginForm");
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
@@ -17,6 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const navButtons = document.querySelectorAll(".nav-btn");
   const quoteText = document.querySelector(".quote-text");
   const quoteAuthor = document.querySelector(".quote-author");
+
+  // Seletores do Diário
+  const journalTextarea = document.getElementById('journalTextarea');
+  const saveJournalBtn = document.getElementById('saveJournalBtn');
+
 
   // --- LÓGICA DAS PARTÍCULAS FLUTUANTES ---
   if (particlesContainer) {
@@ -37,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // --- LÓGICA DE LOGIN (FUNCIONALIDADE DE CERTO.HTML INTEGRADA) ---
+  // --- LÓGICA DE LOGIN ---
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -56,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
         dashboardScreen.classList.add("active");
         navigation.classList.add("visible");
 
-        // Anima as barras do gráfico ao entrar no dashboard
         document.querySelectorAll('.chart-bar').forEach((bar, index) => {
             bar.style.animation = `barGrow 0.8s ease-out ${index * 0.1}s both`;
         });
@@ -66,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- FUNCIONALIDADES DE CERTO.HTML ---
+  // --- FUNCIONALIDADES GERAIS ---
 
   // 1. Botão de Biometria (Simulação)
   if (biometricBtn) {
@@ -82,12 +88,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3. Rotação de Frases
+  // 3. Rotação de Frases (COM MAIS OPÇÕES)
   const quotes = [
     { text: "Cada pequeno passo em direção ao bem-estar é uma vitória.", author: "MindAI" },
     { text: "A jornada de mil milhas começa com um único passo.", author: "Lao Tzu" },
     { text: "O que não nos mata, nos fortalece.", author: "Friedrich Nietzsche" },
-    { text: "A mudança é a única constante na vida.", author: "Heráclito" }
+    { text: "A mudança é a única constante na vida.", author: "Heráclito" },
+    { text: "Sua saúde mental é uma prioridade. Sua felicidade é essencial. Seu amor-próprio é uma necessidade.", author: "Desconhecido" },
+    { text: "Respire fundo. É apenas um dia ruim, não uma vida ruim.", author: "Desconhecido" },
+    { text: "O autoconhecimento é o início de toda a sabedoria.", author: "Aristóteles" },
+    { text: "Permita-se ser um iniciante. Ninguém começa sendo excelente.", author: "Desconhecido" }
   ];
 
   function rotateQuote() {
@@ -101,10 +111,10 @@ document.addEventListener("DOMContentLoaded", () => {
             quoteText.textContent = randomQuote.text;
             quoteAuthor.textContent = "- " + randomQuote.author;
             quoteContent.classList.remove('quote-changing');
-        }, 500); // Metade da animação para trocar o texto
+        }, 500);
       }
   }
-  setInterval(rotateQuote, 10000); // Rotaciona a cada 10 segundos
+  setInterval(rotateQuote, 8000); // Rotaciona a cada 8 segundos
 
   // --- INTERATIVIDADE DO PAINEL ---
 
@@ -119,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 2. Marcar/Desmarcar Tarefas (Funcionalidade melhorada)
+  // 2. Marcar/Desmarcar Tarefas
   taskItems.forEach((item) => {
     item.addEventListener("click", () => {
         const checkbox = item.querySelector('.task-checkbox');
@@ -128,13 +138,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 3. Botões de Navegação
+  // 3. LÓGICA DE NAVEGAÇÃO ENTRE TELAS
   navButtons.forEach(btn => {
       btn.addEventListener('click', function() {
           navButtons.forEach(b => b.classList.remove('active'));
           this.classList.add('active');
-          // Adicione aqui a lógica para trocar de tela se necessário
+
+          const targetScreenId = this.dataset.screen;
+          
+          // Simulação para telas não implementadas
+          if(targetScreenId === 'progress' || targetScreenId === 'settings') {
+              alert(`A tela '${targetScreenId}' ainda não foi implementada.`);
+              return;
+          }
+          
+          const targetScreen = document.getElementById(targetScreenId);
+
+          if (targetScreen) {
+              screens.forEach(screen => {
+                  screen.classList.remove('active');
+              });
+              targetScreen.classList.add('active');
+          }
       });
   });
+
+  // --- FUNCIONALIDADE DO DIÁRIO ---
+  
+  // Carrega o conteúdo salvo ao iniciar
+  if (journalTextarea) {
+      journalTextarea.value = localStorage.getItem('mindAIJournal') || '';
+  }
+
+  // Salva o conteúdo no localStorage
+  if (saveJournalBtn) {
+      saveJournalBtn.addEventListener('click', () => {
+          localStorage.setItem('mindAIJournal', journalTextarea.value);
+          // Feedback visual para o usuário
+          saveJournalBtn.textContent = 'Salvo!';
+          setTimeout(() => {
+              saveJournalBtn.textContent = 'Salvar Anotação';
+          }, 2000);
+      });
+  }
 
 });
