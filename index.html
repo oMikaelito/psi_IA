@@ -19,7 +19,6 @@
           <h1>MindAI</h1>
           <p>Seu bem-estar mental em boas mãos</p>
         </div>
-
         <form id="loginForm">
           <div class="form-group">
             <label for="email">E-mail</label>
@@ -31,7 +30,6 @@
               required
             />
           </div>
-
           <div class="form-group">
             <label for="password">Senha</label>
             <input
@@ -42,14 +40,12 @@
               required
             />
           </div>
-
           <div class="biometric-btn" id="biometricBtn">
             <div class="biometric-icon">
               <span class="material-symbols-outlined"> fingerprint </span>
             </div>
             <span>Usar biometria</span>
           </div>
-
           <div class="terms-checkbox">
             <input type="checkbox" id="terms" required />
             <label for="terms"
@@ -57,12 +53,10 @@
               <a href="#">Política de Privacidade</a></label
             >
           </div>
-
           <button type="submit" class="login-btn">
             <span>ENTRAR</span>
           </button>
         </form>
-
         <div class="login-footer">
           <div class="test-credentials">Teste: admin@mindai.com / admin123</div>
           <div class="footer-links">
@@ -91,7 +85,6 @@
             <div class="mood-btn" data-mood="stressed">😰</div>
           </div>
         </div>
-
         <div class="quote-section">
           <div class="quote-icon">💡</div>
           <div class="quote-content">
@@ -101,7 +94,6 @@
             <p class="quote-author">- MindAI</p>
           </div>
         </div>
-
         <div class="dashboard-grid">
           <div class="card appointments-card">
             <div class="card-header">
@@ -125,7 +117,6 @@
               </div>
             </div>
           </div>
-
           <div class="card chat-card">
             <div class="card-header">
               <div class="card-icon chat-icon">💬</div>
@@ -138,7 +129,6 @@
               <span>Iniciar Conversa</span>
             </button>
           </div>
-
           <div class="card chart-card">
             <div class="card-header">
               <div class="card-icon chart-icon">📊</div>
@@ -158,7 +148,6 @@
               <div class="trend-indicator positive">↗ Tendência positiva</div>
             </div>
           </div>
-
           <div class="card tasks-card">
             <div class="card-header">
               <div class="card-icon tasks-icon">✅</div>
@@ -185,12 +174,26 @@
         </div>
       </div>
     </div>
+
+    <div class="screen" id="journalScreen">
+      <div class="container">
+        <div class="journal-card">
+            <div class="card-header">
+                <div class="card-icon calendar-icon">📝</div>
+                <h2 class="card-title">Meu Diário Pessoal</h2>
+            </div>
+            <p class="journal-description">Use este espaço para anotar seus pensamentos, sentimentos e reflexões. É um lugar seguro para você se expressar.</p>
+            <textarea id="journalTextarea" placeholder="Comece a escrever aqui..."></textarea>
+            <button id="saveJournalBtn" class="login-btn">Salvar Anotação</button>
+        </div>
+      </div>
+    </div>
     
     <div id="navigation" class="visible">
-        <button class="nav-btn active">🏠<span>Início</span></button>
-        <button class="nav-btn">📊<span>Progresso</span></button>
-        <button class="nav-btn">💬<span>Chat</span></button>
-        <button class="nav-btn">⚙️<span>Ajustes</span></button>
+        <button class="nav-btn active" data-screen="dashboard">🏠<span>Início</span></button>
+        <button class="nav-btn" data-screen="progress">📊<span>Progresso</span></button>
+        <button class="nav-btn" data-screen="journalScreen">📝<span>Diário</span></button>
+        <button class="nav-btn" data-screen="settings">⚙️<span>Ajustes</span></button>
     </div>
 
     <script src="scripts.js"></script>
