@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3. Rotação de Frases
+  // 3. Rotação de Frases (MODIFICADO)
   const quotes = [
     { text: "Cada pequeno passo em direção ao bem-estar é uma vitória.", author: "MindAI" },
     { text: "A jornada de mil milhas começa com um único passo.", author: "Lao Tzu" },
@@ -91,18 +91,29 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   function rotateQuote() {
-      if(quoteText && quoteAuthor) {
-        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-        const quoteContent = document.querySelector('.quote-content');
-        
-        quoteContent.classList.add('quote-changing');
+    if (quoteText && quoteAuthor) {
+      const quoteContent = document.querySelector('.quote-content');
 
-        setTimeout(() => {
-            quoteText.textContent = randomQuote.text;
-            quoteAuthor.textContent = "- " + randomQuote.author;
-            quoteContent.classList.remove('quote-changing');
-        }, 500); // Metade da animação para trocar o texto
+      // Impede que a animação seja acionada novamente se já estiver em andamento
+      if (quoteContent.classList.contains('quote-changing')) {
+        return;
       }
+      
+      // Adiciona a classe para iniciar a animação
+      quoteContent.classList.add('quote-changing');
+
+      // No meio da animação (quando o texto está invisível), troca o conteúdo
+      setTimeout(() => {
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        quoteText.textContent = randomQuote.text;
+        quoteAuthor.textContent = "- " + randomQuote.author;
+      }, 500); // Metade da duração da animação de 1s do CSS
+
+      // Ao final da animação, remove a classe para que ela possa ser reativada depois
+      setTimeout(() => {
+        quoteContent.classList.remove('quote-changing');
+      }, 1000); // Duração total da animação
+    }
   }
   setInterval(rotateQuote, 10000); // Rotaciona a cada 10 segundos
 
