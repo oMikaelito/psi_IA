@@ -5,59 +5,106 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("loginForm");
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
+  const termsCheckbox = document.getElementById("terms");
   const navigation = document.getElementById("navigation");
   const particlesContainer = document.querySelector(".floating-particles");
 
+  // Seletores do Dashboard
   const moodSelectors = document.querySelectorAll(".mood-btn");
   const taskItems = document.querySelectorAll(".task-item");
+  const biometricBtn = document.getElementById("biometricBtn");
+  const chatBtn = document.querySelector(".chat-btn");
+  const navButtons = document.querySelectorAll(".nav-btn");
+  const quoteText = document.querySelector(".quote-text");
+  const quoteAuthor = document.querySelector(".quote-author");
 
   // --- LÓGICA DAS PARTÍCULAS FLUTUANTES ---
   if (particlesContainer) {
-    const particleCount = 80; // Aumentado para ter mais partículas!
+    const particleCount = 40;
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement("div");
       particle.className = "particle";
-      
-      const size = Math.random() * 4 + 2; // Tamanho entre 2px e 6px
+      const size = Math.random() * 4 + 2;
       particle.style.width = `${size}px`;
       particle.style.height = `${size}px`;
-      
       particle.style.top = `${Math.random() * 100}%`;
       particle.style.left = `${Math.random() * 100}%`;
-      
-      const animationDuration = Math.random() * 8 + 5; // Duração entre 5s e 13s
-      const animationDelay = Math.random() * 5; // Atraso de até 5s
-      
+      const animationDuration = Math.random() * 8 + 5;
+      const animationDelay = Math.random() * 5;
       particle.style.animationDuration = `${animationDuration}s`;
-      particle.style.animationDelay = `-${animationDelay}s`; // Delay negativo para iniciar em pontos diferentes
-
+      particle.style.animationDelay = `-${animationDelay}s`;
       particlesContainer.appendChild(particle);
     }
   }
 
-
-  // --- LÓGICA DE LOGIN (CORRIGIDA) ---
+  // --- LÓGICA DE LOGIN (FUNCIONALIDADE DE CERTO.HTML INTEGRADA) ---
   loginForm.addEventListener("submit", (e) => {
-    e.preventDefault(); // Impede o envio e recarregamento da página
+    e.preventDefault();
+
+    if (!termsCheckbox.checked) {
+      alert("Por favor, aceite os Termos de Uso e a Política de Privacidade.");
+      return;
+    }
 
     if (
       emailInput.value === "admin@mindai.com" &&
       passwordInput.value === "admin123"
     ) {
-      // 1. Aplica a animação de saída na tela de login
       loginScreen.classList.add("fade-out");
-
-      // 2. Aguarda a animação terminar para trocar de tela
       setTimeout(() => {
-        loginScreen.classList.remove("active"); // Esconde a tela de login
-        loginScreen.classList.remove("fade-out"); // Limpa a classe da animação para garantir que não conflite no futuro
-        dashboardScreen.classList.add("active"); // Mostra o painel
-        navigation.classList.add("visible"); // Mostra a barra de navegação
-      }, 500); // Duração deve ser a mesma da animação no CSS
+        loginScreen.classList.remove("active");
+        dashboardScreen.classList.add("active");
+        navigation.classList.add("visible");
+
+        // Anima as barras do gráfico ao entrar no dashboard
+        document.querySelectorAll('.chart-bar').forEach((bar, index) => {
+            bar.style.animation = `barGrow 0.8s ease-out ${index * 0.1}s both`;
+        });
+      }, 500);
     } else {
       alert("E-mail ou senha incorretos. Use os dados de teste.");
     }
   });
+
+  // --- FUNCIONALIDADES DE CERTO.HTML ---
+
+  // 1. Botão de Biometria (Simulação)
+  if (biometricBtn) {
+    biometricBtn.addEventListener("click", () => {
+      alert("Biometria não disponível neste dispositivo (simulação).");
+    });
+  }
+
+  // 2. Botão do Chat (Simulação)
+  if (chatBtn) {
+    chatBtn.addEventListener("click", () => {
+      alert("Chat com Dr. MindAI será aberto em breve!");
+    });
+  }
+
+  // 3. Rotação de Frases
+  const quotes = [
+    { text: "Cada pequeno passo em direção ao bem-estar é uma vitória.", author: "MindAI" },
+    { text: "A jornada de mil milhas começa com um único passo.", author: "Lao Tzu" },
+    { text: "O que não nos mata, nos fortalece.", author: "Friedrich Nietzsche" },
+    { text: "A mudança é a única constante na vida.", author: "Heráclito" }
+  ];
+
+  function rotateQuote() {
+      if(quoteText && quoteAuthor) {
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        const quoteContent = document.querySelector('.quote-content');
+        
+        quoteContent.classList.add('quote-changing');
+
+        setTimeout(() => {
+            quoteText.textContent = randomQuote.text;
+            quoteAuthor.textContent = "- " + randomQuote.author;
+            quoteContent.classList.remove('quote-changing');
+        }, 500); // Metade da animação para trocar o texto
+      }
+  }
+  setInterval(rotateQuote, 10000); // Rotaciona a cada 10 segundos
 
   // --- INTERATIVIDADE DO PAINEL ---
 
@@ -72,13 +119,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 2. Marcar/Desmarcar Tarefas Pendentes
+  // 2. Marcar/Desmarcar Tarefas (Funcionalidade melhorada)
   taskItems.forEach((item) => {
     item.addEventListener("click", () => {
         const checkbox = item.querySelector('.task-checkbox');
         item.classList.toggle("checked");
         checkbox.classList.toggle('checked');
     });
+  });
+
+  // 3. Botões de Navegação
+  navButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+          navButtons.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          // Adicione aqui a lógica para trocar de tela se necessário
+      });
   });
 
 });
