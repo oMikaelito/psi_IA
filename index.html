@@ -19,7 +19,6 @@
           <h1>MindAI</h1>
           <p>Seu bem-estar mental em boas mãos</p>
         </div>
-
         <form id="loginForm">
           <div class="form-group">
             <label for="email">E-mail</label>
@@ -31,7 +30,6 @@
               required
             />
           </div>
-
           <div class="form-group">
             <label for="password">Senha</label>
             <input
@@ -42,14 +40,12 @@
               required
             />
           </div>
-
           <div class="biometric-btn" id="biometricBtn">
             <div class="biometric-icon">
               <span class="material-symbols-outlined"> fingerprint </span>
             </div>
             <span>Usar biometria</span>
           </div>
-
           <div class="terms-checkbox">
             <input type="checkbox" id="terms" required />
             <label for="terms"
@@ -57,12 +53,10 @@
               <a href="#">Política de Privacidade</a></label
             >
           </div>
-
           <button type="submit" class="login-btn">
             <span>ENTRAR</span>
           </button>
         </form>
-
         <div class="login-footer">
           <div class="test-credentials">Teste: admin@mindai.com / admin123</div>
           <div class="footer-links">
@@ -91,7 +85,6 @@
             <div class="mood-btn" data-mood="stressed">😰</div>
           </div>
         </div>
-
         <div class="quote-section">
           <div class="quote-icon">💡</div>
           <div class="quote-content">
@@ -101,7 +94,6 @@
             <p class="quote-author">- MindAI</p>
           </div>
         </div>
-
         <div class="dashboard-grid">
           <div class="card appointments-card">
             <div class="card-header">
@@ -125,7 +117,6 @@
               </div>
             </div>
           </div>
-
           <div class="card chat-card">
             <div class="card-header">
               <div class="card-icon chat-icon">🤖</div>
@@ -138,7 +129,6 @@
               <span>Iniciar Conversa</span>
             </button>
           </div>
-
           <div class="card chart-card">
             <div class="card-header">
               <div class="card-icon chart-icon">📊</div>
@@ -158,7 +148,6 @@
               <div class="trend-indicator positive">↗ Tendência positiva</div>
             </div>
           </div>
-
           <div class="card tasks-card">
             <div class="card-header">
               <div class="card-icon tasks-icon">✅</div>
@@ -186,11 +175,45 @@
       </div>
     </div>
     
+    <div class="screen" id="diaryScreen">
+        <div class="container">
+            <div class="diary-card">
+                <div class="card-header">
+                    <div class="card-icon tasks-icon">
+                        <span class="material-symbols-outlined">edit_note</span>
+                    </div>
+                    <h2 class="card-title">Meu Diário</h2>
+                </div>
+                <p class="diary-prompt">Escreva sobre como você se sente hoje. O que aconteceu de bom? Quais foram os desafios?</p>
+                <textarea id="diaryEntry" placeholder="Comece a escrever aqui..." rows="10"></textarea>
+                <button id="saveDiaryBtn" class="login-btn">Salvar Entrada</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="screen" id="progressScreen">
+        <div class="container">
+            <div class="placeholder-card">
+                <h2>Progresso</h2>
+                <p>Esta tela mostrará seu progresso ao longo do tempo. Em breve!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="screen" id="settingsScreen">
+        <div class="container">
+            <div class="placeholder-card">
+                <h2>Ajustes</h2>
+                <p>Aqui você poderá configurar suas preferências. Em breve!</p>
+            </div>
+        </div>
+    </div>
+
     <div id="navigation">
-        <button class="nav-btn active">🏠<span>Início</span></button>
-        <button class="nav-btn">📊<span>Progresso</span></button>
-        <button class="nav-btn">💬<span>Chat</span></button>
-        <button class="nav-btn">⚙️<span>Ajustes</span></button>
+        <button class="nav-btn active" data-target="dashboard"><span class="material-symbols-outlined">home</span><span>Início</span></button>
+        <button class="nav-btn" data-target="progressScreen"><span class="material-symbols-outlined">bar_chart</span><span>Progresso</span></button>
+        <button class="nav-btn" data-target="diaryScreen"><span class="material-symbols-outlined">edit_note</span><span>Diário</span></button>
+        <button class="nav-btn" data-target="settingsScreen"><span class="material-symbols-outlined">settings</span><span>Ajustes</span></button>
     </div>
 
     <script src="scripts.js"></script>
