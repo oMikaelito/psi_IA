@@ -691,13 +691,14 @@ body {
   gap: 8px;
 }
 
-/* ===== ANIMAÇÃO DE COR SUAVE (INÍCIO) ===== */
+/* ===== CÓDIGO CORRIGIDO (INÍCIO) ===== */
 .chart-bar {
   width: 12%;
   border-radius: 5px 5px 0 0;
   background: var(--gradient-blue);
-  position: relative; /* Necessário para o pseudo-elemento */
-  overflow: hidden; /* Garante que o ::before não vaze */
+  position: relative;
+  overflow: hidden;
+  /* A animação de subir foi REMOVIDA daqui */
 }
 
 .chart-bar::before {
@@ -708,16 +709,16 @@ body {
   width: 100%;
   height: 100%;
   background: var(--gradient-orange);
-  opacity: 0; /* Começa invisível */
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transição apenas para a cor */
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Removemos a regra .chart-bar:hover que continha o transform */
+/* A regra .chart-bar:hover foi completamente REMOVIDA */
 
 .chart-bar:hover::before {
-  opacity: 1; /* Torna a camada laranja visível */
+  opacity: 1;
 }
-/* ===== ANIMAÇÃO DE COR SUAVE (FIM) ===== */
+/* ===== CÓDIGO CORRIGIDO (FIM) ===== */
 
 
 .chart-info {
