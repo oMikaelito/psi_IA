@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MindAI - Seu bem-estar mental em boas mãos</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
     <link rel="stylesheet" href="mindai_css.css" />
   </head>
   <body>
@@ -38,7 +42,9 @@
           </div>
 
           <div class="biometric-btn" id="biometricBtn">
-            <div class="biometric-icon">👤</div>
+            <div class="biometric-icon">
+              <span class="material-symbols-outlined"> fingerprint </span>
+            </div>
             <span>Usar biometria</span>
           </div>
 
@@ -118,7 +124,7 @@
               </div>
               <div class="appointment-item">
                 <div class="appointment-info">
-                  <div class="appointment-time">10:00</div>
+                  <div class.="appointment-time">10:00</div>
                   <div class="appointment-type">Consulta de Acompanhamento</div>
                 </div>
                 <div class="appointment-status status-hoje">Hoje</div>
@@ -200,66 +206,10 @@
     </div>
 
     <div class="screen" id="notesScreen">
-      <div class="container">
-        <div class="notes-header">
-          <h2>📝 Notas Pessoais</h2>
-          <p>Registre seus pensamentos e reflexões</p>
         </div>
-
-        <div class="notes-content">
-          <div class="new-note-section">
-            <input
-              type="text"
-              id="noteTitle"
-              placeholder="Título da nota..."
-              maxlength="50"
-            />
-            <textarea
-              id="noteContent"
-              placeholder="Escreva sua nota aqui..."
-              rows="5"
-            ></textarea>
-            <div class="note-actions">
-              <button class="save-note-btn" id="saveNoteBtn">
-                Salvar Nota
-              </button>
-              <button class="clear-note-btn" id="clearNoteBtn">Limpar</button>
-            </div>
-          </div>
-
-          <div class="notes-list" id="notesList">
-            <div class="empty-notes">
-              <div class="empty-icon">📝</div>
-              <p>Nenhuma nota ainda. Comece escrevendo sua primeira nota!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div id="navigation">
-      <button class="nav-btn active" data-screen="dashboard">
-        <div class="nav-icon">🏠</div>
-        <span>Início</span>
-      </button>
-      <button class="nav-btn" data-screen="progress">
-        <div class="nav-icon">📊</div>
-        <span>Progresso</span>
-      </button>
-      <button class="nav-btn" data-screen="chat">
-        <div class="nav-icon">💬</div>
-        <span>Chat</span>
-      </button>
-      <button class="nav-btn" data-screen="notes">
-        <div class="nav-icon">📝</div>
-        <span>Notas</span>
-      </button>
-      <button class="nav-btn" data-screen="settings">
-        <div class="nav-icon">⚙️</div>
-        <span>Config</span>
-      </button>
-    </div>
-
+        </div>
     <script src="script.js"></script>
   </body>
 </html>
