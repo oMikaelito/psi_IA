@@ -1,5 +1,3 @@
-// MindAI - Sistema de Login e Funcionalidades Interativas
-
 class MindAI {
   constructor() {
     this.currentScreen = "login";
@@ -51,14 +49,20 @@ class MindAI {
   setupEventListeners() {
     // Login form
     const loginForm = document.getElementById("loginForm");
-    const loginBtn = document.querySelector(".login-btn");
+    if (loginForm) {
+      const loginBtn = loginForm.querySelector(".login-btn");
 
-    loginForm.addEventListener("submit", (e) => this.handleLogin(e));
-    loginBtn.addEventListener("click", (e) => this.createRippleEffect(e));
+      loginForm.addEventListener("submit", (e) => this.handleLogin(e));
+      if(loginBtn) {
+        loginBtn.addEventListener("click", (e) => this.createRippleEffect(e));
+      }
+    }
 
     // Biometric button
     const biometricBtn = document.getElementById("biometricBtn");
-    biometricBtn.addEventListener("click", () => this.handleBiometricLogin());
+    if (biometricBtn) {
+      biometricBtn.addEventListener("click", () => this.handleBiometricLogin());
+    }
 
     // Chat button
     const chatBtn = document.querySelector(".chat-btn");
@@ -131,6 +135,7 @@ class MindAI {
 
   showLoadingLogin() {
     const loginBtn = document.querySelector(".login-btn");
+    if(!loginBtn) return;
     const originalText = loginBtn.querySelector("span").textContent;
 
     loginBtn.querySelector("span").textContent = "ENTRANDO...";
@@ -161,6 +166,8 @@ class MindAI {
     const loginScreen = document.getElementById("loginScreen");
     const dashboard = document.getElementById("dashboard");
     const navigation = document.getElementById("navigation");
+
+    if(!loginScreen || !dashboard || !navigation) return;
 
     // Animação de saída da tela de login
     loginScreen.style.transform = "scale(0.9)";
@@ -204,6 +211,8 @@ class MindAI {
     const task = this.userTasks.find((t) => t.id === taskId);
     if (task) {
       task.completed = !task.completed;
+    } else {
+        return; // Sai se a tarefa não for encontrada
     }
 
     // Animação de toggle
@@ -261,8 +270,12 @@ class MindAI {
       const finalY = Math.sin(angle) * distance;
 
       particle.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
-      particle.style.transform = `translate(${finalX}px, ${finalY}px)`;
-      particle.style.opacity = "0";
+      
+      // Atraso para garantir que a transição seja aplicada após o elemento ser adicionado ao DOM
+      requestAnimationFrame(() => {
+        particle.style.transform = `translate(${finalX}px, ${finalY}px)`;
+        particle.style.opacity = "0";
+      });
 
       setTimeout(() => {
         particle.remove();
@@ -272,7 +285,8 @@ class MindAI {
 
   selectMood(e) {
     const moodBtns = document.querySelectorAll(".mood-btn");
-    const selectedBtn = e.target;
+    const selectedBtn = e.target.closest(".mood-btn");
+    if(!selectedBtn) return;
 
     // Remove active de todos
     moodBtns.forEach((btn) => btn.classList.remove("active"));
@@ -305,10 +319,14 @@ class MindAI {
   handleNavigation(e) {
     const navBtns = document.querySelectorAll(".nav-btn");
     const selectedBtn = e.target.closest(".nav-btn");
+    if(!selectedBtn) return;
     const targetScreen = selectedBtn.dataset.screen;
 
     // Remove active de todos
-    navBtns.forEach((btn) => btn.classList.remove("active"));
+    navBtns.forEach((btn) => {
+        btn.classList.remove("active");
+        btn.style.transform = "translateY(0)";
+    });
 
     // Adiciona active ao selecionado
     selectedBtn.classList.add("active");
@@ -351,9 +369,17 @@ class MindAI {
         `Funcionalidade "${targetScreen}" em desenvolvimento.`,
         "info"
       );
+      // Mantém a tela atual visível se a nova não existir
+      if(screens[this.currentScreen]) {
+          screens[this.currentScreen].style.display = "block";
+      } else {
+          screens.dashboard.style.display = "block"; // fallback
+      }
     }
 
-    this.currentScreen = targetScreen;
+    if (screens[targetScreen]) {
+      this.currentScreen = targetScreen;
+    }
   }
 
   handleChatStart() {
@@ -392,6 +418,8 @@ class MindAI {
     const quoteContent = document.querySelector(".quote-content");
     const quoteText = document.querySelector(".quote-text");
 
+    if(!quoteContent || !quoteText) return;
+
     // Animação de saída
     quoteContent.classList.add("quote-changing");
 
@@ -404,22 +432,24 @@ class MindAI {
   }
 
   createRippleEffect(e) {
-    const button = e.target;
-    const ripple = button.querySelector(".btn-ripple");
-
+    const button = e.currentTarget;
+    const ripple = document.createElement("div");
+    
     const rect = button.getBoundingClientRect();
     const size = Math.max(rect.width, rect.height);
     const x = e.clientX - rect.left - size / 2;
     const y = e.clientY - rect.top - size / 2;
-
-    ripple.style.width = ripple.style.height = size + "px";
-    ripple.style.left = x + "px";
-    ripple.style.top = y + "px";
-    ripple.style.transform = "scale(0)";
-    ripple.style.animation = "ripple 0.6s linear";
+    
+    ripple.style.width = ripple.style.height = `${size}px`;
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    
+    ripple.classList.add("btn-ripple");
+    
+    button.appendChild(ripple);
 
     setTimeout(() => {
-      ripple.style.animation = "";
+      ripple.remove();
     }, 600);
   }
 
@@ -445,10 +475,11 @@ class MindAI {
             color: white;
             font-weight: 500;
             z-index: 10000;
-            transform: translateX(300px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(120%);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             max-width: 300px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-left: 5px solid;
         `;
 
     // Cores baseadas no tipo
@@ -458,8 +489,10 @@ class MindAI {
       info: "#2196F3",
       warning: "#FF9800",
     };
-
-    toast.style.backgroundColor = colors[type] || colors.info;
+    
+    const bgColor = colors[type] || colors.info;
+    toast.style.backgroundColor = bgColor;
+    toast.style.borderColor = `rgba(0,0,0,0.2)`;
 
     document.body.appendChild(toast);
 
@@ -470,10 +503,10 @@ class MindAI {
 
     // Remove após 3 segundos
     setTimeout(() => {
-      toast.style.transform = "translateX(300px)";
+      toast.style.transform = "translateX(120%)";
       setTimeout(() => {
         toast.remove();
-      }, 300);
+      }, 400);
     }, 3000);
   }
 }
