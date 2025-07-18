@@ -698,7 +698,6 @@ body {
   background: var(--gradient-blue);
   position: relative; /* Necessário para o pseudo-elemento */
   overflow: hidden; /* Garante que o ::before não vaze */
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transição apenas para o pulo */
 }
 
 .chart-bar::before {
@@ -713,9 +712,7 @@ body {
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transição apenas para a cor */
 }
 
-.chart-bar:hover {
-  transform: translateY(-10px); /* Efeito de pular */
-}
+/* Removemos a regra .chart-bar:hover que continha o transform */
 
 .chart-bar:hover::before {
   opacity: 1; /* Torna a camada laranja visível */
