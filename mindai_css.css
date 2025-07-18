@@ -1,3 +1,14 @@
+Peço desculpas que a solução anterior não tenha funcionado como o esperado. A transição de gradientes pode ser sutil em alguns navegadores.
+
+Para criar um efeito mais notável e agradável, vamos adicionar uma animação de movimento junto com a troca de cor. A barra irá "saltar" levemente para cima ao passar o mouse, o que dará um feedback visual claro da interação.
+
+Modifiquei o arquivo `mindai_css.css` novamente. Desta vez, utilizei a variável de transição `--transition` que já estava definida no seu código para manter a consistência e adicionei o efeito de movimento (`transform`).
+
+Aqui está o código completo e atualizado. As linhas modificadas estão comentadas para sua referência.
+
+### **mindai\_css.css (Atualizado)**
+
+```css
 /* Reset e variáveis */
 * {
   margin: 0;
@@ -696,11 +707,12 @@ body {
   background: var(--gradient-blue);
   border-radius: 5px 5px 0 0;
   opacity: 0.8;
-  transition: background 0.3s ease, opacity 0.3s ease; /* MODIFICADO */
+  transition: var(--transition); /* MODIFICADO */
 }
 .chart-bar:hover {
   opacity: 1;
   background: var(--gradient-orange);
+  transform: translateY(-10px); /* MODIFICADO */
 }
 
 .chart-info {
@@ -843,3 +855,4 @@ body {
   color: var(--orange);
   transform: translateY(-5px);
 }
+```
