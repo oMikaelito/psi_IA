@@ -2,35 +2,57 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- SELETORES DO DOM ---
   const loginScreen = document.getElementById("loginScreen");
   const dashboardScreen = document.getElementById("dashboard");
-  const notesScreen = document.getElementById("notesScreen");
   const loginForm = document.getElementById("loginForm");
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
   const navigation = document.getElementById("navigation");
-  
+  const particlesContainer = document.querySelector(".floating-particles");
+
   const moodSelectors = document.querySelectorAll(".mood-btn");
   const taskItems = document.querySelectorAll(".task-item");
 
-  // --- LÓGICA DE LOGIN ---
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault(); // Impede o envio real do formulário
+  // --- LÓGICA DAS PARTÍCULAS FLUTUANTES ---
+  if (particlesContainer) {
+    const particleCount = 40; // Aumente para ter mais partículas!
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement("div");
+      particle.className = "particle";
+      
+      const size = Math.random() * 4 + 2; // Tamanho entre 2px e 6px
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      
+      particle.style.top = `${Math.random() * 100}%`;
+      particle.style.left = `${Math.random() * 100}%`;
+      
+      const animationDuration = Math.random() * 8 + 5; // Duração entre 5s e 13s
+      const animationDelay = Math.random() * 5; // Atraso de até 5s
+      
+      particle.style.animationDuration = `${animationDuration}s`;
+      particle.style.animationDelay = `-${animationDelay}s`; // Delay negativo para iniciar em pontos diferentes
 
-    // Simulação de validação (use os dados de teste)
+      particlesContainer.appendChild(particle);
+    }
+  }
+
+
+  // --- LÓGICA DE LOGIN (CORRIGIDA) ---
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault(); // Impede o envio e recarregamento da página
+
     if (
       emailInput.value === "admin@mindai.com" &&
       passwordInput.value === "admin123"
     ) {
-      // Adiciona a animação de fade-out na tela de login
+      // 1. Aplica a animação de saída na tela de login
       loginScreen.classList.add("fade-out");
 
-      // Após a animação, esconde a tela de login e mostra o dashboard
+      // 2. Aguarda a animação terminar para trocar de tela
       setTimeout(() => {
-        loginScreen.classList.remove("active");
-        loginScreen.classList.remove("fade-out"); // Limpa para futuras transições
-        
-        dashboardScreen.classList.add("active");
+        loginScreen.classList.remove("active"); // Esconde a tela de login
+        dashboardScreen.classList.add("active"); // Mostra o painel
         navigation.classList.add("visible"); // Mostra a barra de navegação
-      }, 500); // Duração da animação de fadeOut
+      }, 500); // Duração deve ser a mesma da animação no CSS
     } else {
       alert("E-mail ou senha incorretos. Use os dados de teste.");
     }
@@ -41,13 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1. Seleção de Humor
   moodSelectors.forEach((btn) => {
     btn.addEventListener("click", () => {
-      // Verifica se o botão clicado já está ativo
       const isAlreadyActive = btn.classList.contains("active");
-
-      // Remove a classe 'active' de todos os botões de humor
       moodSelectors.forEach((moodBtn) => moodBtn.classList.remove("active"));
-      
-      // Se o botão não estava ativo, ativa-o
       if (!isAlreadyActive) {
         btn.classList.add("active");
       }
@@ -57,13 +74,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2. Marcar/Desmarcar Tarefas Pendentes
   taskItems.forEach((item) => {
     item.addEventListener("click", () => {
-        // Alterna o estado da tarefa no elemento pai
-        item.classList.toggle("checked");
-        // Encontra o checkbox dentro do item e alterna seu estado visual
         const checkbox = item.querySelector('.task-checkbox');
-        if (checkbox) {
-            checkbox.classList.toggle('checked');
-        }
+        item.classList.toggle("checked");
+        checkbox.classList.toggle('checked');
     });
   });
 
