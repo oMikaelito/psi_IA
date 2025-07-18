@@ -1,10 +1,3 @@
-Com certeza\! Baseado no seu `HTML`, na paleta de cores fornecida e nas suas instruções, finalizei o arquivo `CSS` para completar o design do seu painel `MindAI`.
-
-O código abaixo conclui os estilos que estavam faltando, adiciona as animações solicitadas para as tarefas e prepara a estrutura para a nova tela de "Notas Pessoais" e para a barra de navegação inferior.
-
-### `mindai_css_completed.css`
-
-```css
 /* Reset e variáveis */
 * {
   margin: 0;
@@ -376,7 +369,7 @@ body {
 
 /* Dashboard Screen */
 .dashboard {
-  /* display: none; */ /* Descomente para controlar via JS */
+  display: none; /* Controlado via JS */
   padding: 20px 0 120px; /* Adicionado padding-bottom para não sobrepor a nav */
   animation: fadeIn 0.8s ease-out;
 }
@@ -783,12 +776,13 @@ body {
   transition: var(--transition);
   position: relative;
   flex-shrink: 0;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .task-checkbox.checked {
   background: var(--light-blue);
   border-color: var(--light-blue);
-  animation: taskComplete 0.5s ease-out;
 }
 
 .task-checkbox.checked::after {
@@ -933,6 +927,7 @@ body {
 
 /* Barra de Navegação */
 .navigation {
+  display: none; /* Controlado via JS */
   position: fixed;
   bottom: 0;
   left: 0;
@@ -941,7 +936,6 @@ body {
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-top: 1px solid rgba(58, 204, 249, 0.2);
-  display: flex;
   justify-content: space-around;
   padding: 10px 0;
   box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
