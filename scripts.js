@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const navButtons = document.querySelectorAll(".nav-btn");
   const quoteText = document.querySelector(".quote-text");
   const quoteAuthor = document.querySelector(".quote-author");
+  const quoteContent = document.querySelector('.quote-content');
+
 
   // --- LÓGICA DAS PARTÍCULAS FLUTUANTES ---
   if (particlesContainer) {
@@ -37,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // --- LÓGICA DE LOGIN (FUNCIONALIDADE DE CERTO.HTML INTEGRADA) ---
+  // --- LÓGICA DE LOGIN ---
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -66,23 +68,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- FUNCIONALIDADES DE CERTO.HTML ---
+  // --- FUNCIONALIDADES DO DASHBOARD ---
 
-  // 1. Botão de Biometria (Simulação)
+  // Botão de Biometria (Simulação)
   if (biometricBtn) {
     biometricBtn.addEventListener("click", () => {
       alert("Biometria não disponível neste dispositivo (simulação).");
     });
   }
 
-  // 2. Botão do Chat (Simulação)
+  // Botão do Chat (Simulação)
   if (chatBtn) {
     chatBtn.addEventListener("click", () => {
       alert("Chat com Dr. MindAI será aberto em breve!");
     });
   }
 
-  // 3. Rotação de Frases (MODIFICADO)
+  // ===================================================================
+  // --- ROTAÇÃO DE FRASES (LÓGICA CORRIGIDA E ROBUSTA) ---
+  // ===================================================================
   const quotes = [
     { text: "Cada pequeno passo em direção ao bem-estar é uma vitória.", author: "MindAI" },
     { text: "A jornada de mil milhas começa com um único passo.", author: "Lao Tzu" },
@@ -91,35 +95,38 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   function rotateQuote() {
-    if (quoteText && quoteAuthor) {
-      const quoteContent = document.querySelector('.quote-content');
+      if (!quoteContent || !quoteText || !quoteAuthor) return;
 
-      // Impede que a animação seja acionada novamente se já estiver em andamento
+      // Previne acionamentos múltiplos se a animação já estiver ocorrendo
       if (quoteContent.classList.contains('quote-changing')) {
-        return;
+          return;
       }
-      
-      // Adiciona a classe para iniciar a animação
+
+      // 1. Ouve pelo evento 'animationend', que ocorre quando a animação do CSS termina.
+      // A opção { once: true } faz com que o listener seja removido automaticamente após ser usado.
+      quoteContent.addEventListener('animationend', () => {
+          quoteContent.classList.remove('quote-changing');
+      }, { once: true });
+
+      // 2. Troca o texto no meio da animação (500ms), quando está invisível.
+      setTimeout(() => {
+          const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+          quoteText.textContent = randomQuote.text;
+          quoteAuthor.textContent = "- " + randomQuote.author;
+      }, 500); // Metade da duração da animação (1s)
+
+      // 3. Adiciona a classe para iniciar a animação.
       quoteContent.classList.add('quote-changing');
-
-      // No meio da animação (quando o texto está invisível), troca o conteúdo
-      setTimeout(() => {
-        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-        quoteText.textContent = randomQuote.text;
-        quoteAuthor.textContent = "- " + randomQuote.author;
-      }, 500); // Metade da duração da animação de 1s do CSS
-
-      // Ao final da animação, remove a classe para que ela possa ser reativada depois
-      setTimeout(() => {
-        quoteContent.classList.remove('quote-changing');
-      }, 1000); // Duração total da animação
-    }
   }
-  setInterval(rotateQuote, 10000); // Rotaciona a cada 10 segundos
+  
+  // Aciona a função a cada 10 segundos
+  setInterval(rotateQuote, 10000);
 
+  // ===================================================================
   // --- INTERATIVIDADE DO PAINEL ---
+  // ===================================================================
 
-  // 1. Seleção de Humor
+  // Seleção de Humor
   moodSelectors.forEach((btn) => {
     btn.addEventListener("click", () => {
       const isAlreadyActive = btn.classList.contains("active");
@@ -130,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 2. Marcar/Desmarcar Tarefas (Funcionalidade melhorada)
+  // Marcar/Desmarcar Tarefas
   taskItems.forEach((item) => {
     item.addEventListener("click", () => {
         const checkbox = item.querySelector('.task-checkbox');
@@ -139,12 +146,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 3. Botões de Navegação
+  // Botões de Navegação
   navButtons.forEach(btn => {
       btn.addEventListener('click', function() {
           navButtons.forEach(b => b.classList.remove('active'));
           this.classList.add('active');
-          // Adicione aqui a lógica para trocar de tela se necessário
       });
   });
 
