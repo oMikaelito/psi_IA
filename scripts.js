@@ -13,11 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const moodSelectors = document.querySelectorAll(".mood-btn");
   const taskItems = document.querySelectorAll(".task-item");
   const biometricBtn = document.getElementById("biometricBtn");
+  const chatBtn = document.querySelector(".chat-btn");
   const navButtons = document.querySelectorAll(".nav-btn");
   const quoteText = document.querySelector(".quote-text");
   const quoteAuthor = document.querySelector(".quote-author");
   const quoteContent = document.querySelector('.quote-content');
-  const diaryTextarea = document.getElementById("diary-entry");
 
 
   // --- LÓGICA DAS PARTÍCULAS FLUTUANTES ---
@@ -76,19 +76,12 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Biometria não disponível neste dispositivo (simulação).");
     });
   }
-  
-  // --- LÓGICA DO DIÁRIO PESSOAL ---
-  if (diaryTextarea) {
-      // Carrega anotações salvas do localStorage ao iniciar a página
-      const savedNotes = localStorage.getItem('mindAiDiary');
-      if (savedNotes) {
-          diaryTextarea.value = savedNotes;
-      }
 
-      // Salva as anotações no localStorage sempre que o usuário digita
-      diaryTextarea.addEventListener('input', () => {
-          localStorage.setItem('mindAiDiary', diaryTextarea.value);
-      });
+  // Botão do Chat (Simulação)
+  if (chatBtn) {
+    chatBtn.addEventListener("click", () => {
+      alert("Chat com Dr. MindAI será aberto em breve!");
+    });
   }
 
   // ===================================================================
