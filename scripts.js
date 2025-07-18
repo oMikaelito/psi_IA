@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const navigation = document.getElementById("navigation");
   const particlesContainer = document.querySelector(".floating-particles");
 
-  // Seletores do Dashboard
+  // Seletores do Dashboard e outras telas
+  const allScreens = document.querySelectorAll(".screen");
   const moodSelectors = document.querySelectorAll(".mood-btn");
   const taskItems = document.querySelectorAll(".task-item");
   const biometricBtn = document.getElementById("biometricBtn");
@@ -18,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const quoteText = document.querySelector(".quote-text");
   const quoteAuthor = document.querySelector(".quote-author");
   const quoteContent = document.querySelector('.quote-content');
+  const saveDiaryBtn = document.getElementById("saveDiaryBtn");
 
 
   // --- LÓGICA DAS PARTÍCULAS FLUTUANTES ---
@@ -97,33 +99,27 @@ document.addEventListener("DOMContentLoaded", () => {
   function rotateQuote() {
       if (!quoteContent || !quoteText || !quoteAuthor) return;
 
-      // Previne acionamentos múltiplos se a animação já estiver ocorrendo
       if (quoteContent.classList.contains('quote-changing')) {
           return;
       }
-
-      // 1. Ouve pelo evento 'animationend', que ocorre quando a animação do CSS termina.
-      // A opção { once: true } faz com que o listener seja removido automaticamente após ser usado.
+      
       quoteContent.addEventListener('animationend', () => {
           quoteContent.classList.remove('quote-changing');
       }, { once: true });
 
-      // 2. Troca o texto no meio da animação (500ms), quando está invisível.
       setTimeout(() => {
           const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
           quoteText.textContent = randomQuote.text;
           quoteAuthor.textContent = "- " + randomQuote.author;
-      }, 500); // Metade da duração da animação (1s)
+      }, 500);
 
-      // 3. Adiciona a classe para iniciar a animação.
       quoteContent.classList.add('quote-changing');
   }
   
-  // Aciona a função a cada 10 segundos
   setInterval(rotateQuote, 10000);
 
   // ===================================================================
-  // --- INTERATIVIDADE DO PAINEL ---
+  // --- INTERATIVIDADE DO PAINEL E NAVEGAÇÃO ---
   // ===================================================================
 
   // Seleção de Humor
@@ -145,13 +141,39 @@ document.addEventListener("DOMContentLoaded", () => {
         checkbox.classList.toggle('checked');
     });
   });
-
-  // Botões de Navegação
+  
+  // Botões de Navegação e Troca de Tela
   navButtons.forEach(btn => {
       btn.addEventListener('click', function() {
+          // 1. Atualiza o estilo do botão ativo
           navButtons.forEach(b => b.classList.remove('active'));
           this.classList.add('active');
+
+          // 2. Troca de tela
+          const targetId = this.dataset.target; // Pega o ID da tela do atributo 'data-target'
+          const targetScreen = document.getElementById(targetId);
+
+          if (targetScreen) {
+              allScreens.forEach(screen => {
+                  screen.classList.remove('active'); // Esconde todas as telas
+              });
+              targetScreen.classList.add('active'); // Mostra apenas a tela alvo
+          }
       });
   });
+
+  // --- LÓGICA DA TELA DO DIÁRIO ---
+  if(saveDiaryBtn) {
+    saveDiaryBtn.addEventListener("click", () => {
+      const diaryEntry = document.getElementById("diaryEntry");
+      if (diaryEntry.value.trim() === "") {
+        alert("Por favor, escreva algo em seu diário antes de salvar.");
+      } else {
+        alert("Entrada do diário salva com sucesso!");
+        // Limpa o campo de texto após salvar (simulação)
+        diaryEntry.value = ""; 
+      }
+    });
+  }
 
 });
