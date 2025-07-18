@@ -105,9 +105,7 @@
         <div class="dashboard-grid">
           <div class="card appointments-card">
             <div class="card-header">
-              <div class="card-icon calendar-icon">
-                <span class="material-symbols-outlined"> calendar_month </span>
-              </div>
+              <div class="card-icon calendar-icon">📅</div>
               <div class="card-title">Próximos Agendamentos</div>
             </div>
             <div class="appointments-list">
@@ -128,24 +126,22 @@
             </div>
           </div>
 
-          <div class="card diary-card">
+          <div class="card chat-card">
             <div class="card-header">
-              <div class="card-icon diary-icon">
-                <span class="material-symbols-outlined"> edit_note </span>
-              </div>
-              <div class="card-title">Diário Pessoal</div>
+              <div class="card-icon chat-icon">💬</div>
+              <div class="card-title">Chat com Dr. MindAI</div>
             </div>
-            <textarea
-              id="diary-entry"
-              placeholder="Escreva aqui seus pensamentos, sentimentos e reflexões..."
-            ></textarea>
+            <div class="chat-preview">
+                <p>Estou aqui para conversar sempre que precisar.</p>
+            </div>
+            <button class="chat-btn">
+              <span>Iniciar Conversa</span>
+            </button>
           </div>
 
           <div class="card chart-card">
             <div class="card-header">
-              <div class="card-icon chart-icon">
-                <span class="material-symbols-outlined"> bar_chart </span>
-              </div>
+              <div class="card-icon chart-icon">📊</div>
               <div class="card-title">Evolução do Humor</div>
             </div>
             <div class="chart-container">
@@ -165,9 +161,7 @@
 
           <div class="card tasks-card">
             <div class="card-header">
-              <div class="card-icon tasks-icon">
-                <span class="material-symbols-outlined"> checklist </span>
-              </div>
+              <div class="card-icon tasks-icon">✅</div>
               <div class="card-title">Tarefas Pendentes</div>
             </div>
             <div class="tasks-list">
@@ -191,24 +185,15 @@
         </div>
       </div>
     </div>
-
+    
     <div id="navigation">
-      <button class="nav-btn active">
-        <span class="material-symbols-outlined"> home </span>
-        <span>Início</span>
-      </button>
-      <button class="nav-btn">
-        <span class="material-symbols-outlined"> timeline </span>
-        <span>Progresso</span>
-      </button>
-      <button class="nav-btn">
-        <span class="material-symbols-outlined"> forum </span>
-        <span>Chat</span>
-      </button>
-      <button class="nav-btn">
-        <span class="material-symbols-outlined"> settings </span>
-        <span>Ajustes</span>
-      </button>
+        <button class="nav-btn active">🏠<span>Início</span></button>
+        <button class="nav-btn">📊<span>Progresso</span></button>
+        <button class="nav-btn">
+            <span class="material-symbols-outlined">edit_note</span>
+            <span>Diário</span>
+        </button>
+        <button class="nav-btn">⚙️<span>Ajustes</span></button>
     </div>
 
     <script src="scripts.js"></script>
