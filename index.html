@@ -27,6 +27,7 @@
               type="email"
               id="email"
               placeholder="seu@email.com"
+              value="admin@mindai.com"
               required
             />
           </div>
@@ -37,13 +38,14 @@
               type="password"
               id="password"
               placeholder="Sua senha"
+              value="admin123"
               required
             />
           </div>
 
           <div class="biometric-btn" id="biometricBtn">
             <div class="biometric-icon">
-              <span class="material-symbols-outlined"> touch_app </span>
+              <span class="material-symbols-outlined"> fingerprint </span>
             </div>
             <span>Usar biometria</span>
           </div>
@@ -58,7 +60,6 @@
 
           <button type="submit" class="login-btn">
             <span>ENTRAR</span>
-            <div class="btn-ripple"></div>
           </button>
         </form>
 
@@ -92,12 +93,12 @@
         </div>
 
         <div class="quote-section">
-          <div class="quote-icon">💫</div>
+          <div class="quote-icon">💡</div>
           <div class="quote-content">
-            <div class="quote-text">
+            <p class="quote-text">
               Cada pequeno passo em direção ao bem-estar é uma vitória.
-            </div>
-            <div class="quote-author">- MindAI</div>
+            </p>
+            <p class="quote-author">- MindAI</p>
           </div>
         </div>
 
@@ -122,13 +123,6 @@
                 </div>
                 <div class="appointment-status status-amanha">Amanhã</div>
               </div>
-              <div class="appointment-item">
-                <div class="appointment-info">
-                  <div class.="appointment-time">10:00</div>
-                  <div class="appointment-type">Consulta de Acompanhamento</div>
-                </div>
-                <div class="appointment-status status-hoje">Hoje</div>
-              </div>
             </div>
           </div>
 
@@ -138,16 +132,10 @@
               <div class="card-title">Chat com Dr. MindAI</div>
             </div>
             <div class="chat-preview">
-              <div class="chat-message">
-                <div class="message-avatar">🤖</div>
-                <div class="message-content">
-                  <p>Olá! Como posso ajudar você hoje?</p>
-                </div>
-              </div>
+                <p>Estou aqui para conversar sempre que precisar.</p>
             </div>
             <button class="chat-btn">
               <span>Iniciar Conversa</span>
-              <div class="btn-icon">→</div>
             </button>
           </div>
 
@@ -179,9 +167,7 @@
             <div class="tasks-list">
               <div class="task-item">
                 <div class="task-checkbox"></div>
-                <div class="task-text">
-                  Fazer exercício de respiração (5 min)
-                </div>
+                <div class="task-text">Fazer exercício de respiração (5 min)</div>
                 <div class="task-priority high"></div>
               </div>
               <div class="task-item">
@@ -189,27 +175,24 @@
                 <div class="task-text">Registrar humor do dia</div>
                 <div class="task-priority medium"></div>
               </div>
-              <div class="task-item">
-                <div class="task-checkbox"></div>
+              <div class="task-item checked">
+                <div class="task-checkbox checked"></div>
                 <div class="task-text">Ler artigo sobre mindfulness</div>
                 <div class="task-priority low"></div>
-              </div>
-              <div class="task-item">
-                <div class="task-checkbox"></div>
-                <div class="task-text">Praticar gratidão (3 coisas)</div>
-                <div class="task-priority high"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="screen" id="notesScreen">
-        </div>
-
+    
     <div id="navigation">
-        </div>
+        <button class="nav-btn active">🏠<span>Início</span></button>
+        <button class="nav-btn">📊<span>Progresso</span></button>
+        <button class="nav-btn">💬<span>Chat</span></button>
+        <button class="nav-btn">⚙️<span>Ajustes</span></button>
+    </div>
+
     <script src="scripts.js"></script>
   </body>
 </html>
