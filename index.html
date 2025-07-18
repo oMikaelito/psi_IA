@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MindAI - Seu bem-estar mental em boas mãos</title>
+    <link rel="stylesheet" href="mindai_css.css" />
+  </head>
+  <body>
+    <!-- Login Screen -->
+    <div class="login-screen" id="loginScreen">
+      <div class="floating-particles"></div>
+      <div class="login-card">
+        <div class="logo">
+          <div class="logo-icon">🧠</div>
+          <h1>MindAI</h1>
+          <p>Seu bem-estar mental em boas mãos</p>
+        </div>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="seu@email.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Senha</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Sua senha"
+              required
+            />
+          </div>
+
+          <div class="biometric-btn" id="biometricBtn">
+            <div class="biometric-icon">👤</div>
+            <span>Usar biometria</span>
+          </div>
+
+          <div class="terms-checkbox">
+            <input type="checkbox" id="terms" required />
+            <label for="terms"
+              >Aceito os <a href="#">Termos de Uso</a> e
+              <a href="#">Política de Privacidade</a></label
+            >
+          </div>
+
+          <button type="submit" class="login-btn">
+            <span>ENTRAR</span>
+            <div class="btn-ripple"></div>
+          </button>
+        </form>
+
+        <div class="login-footer">
+          <div class="test-credentials">Teste: admin@mindai.com / admin123</div>
+          <div class="footer-links">
+            <a href="#">Esqueci minha senha</a>
+            <a href="#">Política de Privacidade</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div class="dashboard" id="dashboard">
+      <div class="container">
+        <!-- Header renovado -->
+        <div class="dashboard-header">
+          <div class="welcome-section">
+            <div class="avatar">👋</div>
+            <div class="welcome-text">
+              <h2>Olá, João!</h2>
+              <p>Como você está se sentindo hoje?</p>
+            </div>
+          </div>
+          <div class="mood-selector">
+            <div class="mood-btn" data-mood="great">😊</div>
+            <div class="mood-btn" data-mood="good">🙂</div>
+            <div class="mood-btn" data-mood="neutral">😐</div>
+            <div class="mood-btn" data-mood="sad">😔</div>
+            <div class="mood-btn" data-mood="stressed">😰</div>
+          </div>
+        </div>
+
+        <!-- Seção de frase inspiradora -->
+        <div class="quote-section">
+          <div class="quote-icon">💫</div>
+          <div class="quote-content">
+            <div class="quote-text">
+              Cada pequeno passo em direção ao bem-estar é uma vitória.
+            </div>
+            <div class="quote-author">- MindAI</div>
+          </div>
+        </div>
+
+        <!-- Grid principal -->
+        <div class="dashboard-grid">
+          <!-- Próximos agendamentos -->
+          <div class="card appointments-card">
+            <div class="card-header">
+              <div class="card-icon calendar-icon">📅</div>
+              <div class="card-title">Próximos Agendamentos</div>
+            </div>
+            <div class="appointments-list">
+              <div class="appointment-item">
+                <div class="appointment-info">
+                  <div class="appointment-time">14:00</div>
+                  <div class="appointment-type">Sessão Individual</div>
+                </div>
+                <div class="appointment-status status-hoje">Hoje</div>
+              </div>
+              <div class="appointment-item">
+                <div class="appointment-info">
+                  <div class="appointment-time">16:30</div>
+                  <div class="appointment-type">Terapia em Grupo</div>
+                </div>
+                <div class="appointment-status status-amanha">Amanhã</div>
+              </div>
+              <div class="appointment-item">
+                <div class="appointment-info">
+                  <div class="appointment-time">10:00</div>
+                  <div class="appointment-type">Consulta de Acompanhamento</div>
+                </div>
+                <div class="appointment-status status-hoje">Hoje</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chat com Dr. MindAI -->
+          <div class="card chat-card">
+            <div class="card-header">
+              <div class="card-icon chat-icon">💬</div>
+              <div class="card-title">Chat com Dr. MindAI</div>
+            </div>
+            <div class="chat-preview">
+              <div class="chat-message">
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                  <p>Olá! Como posso ajudar você hoje?</p>
+                </div>
+              </div>
+            </div>
+            <button class="chat-btn">
+              <span>Iniciar Conversa</span>
+              <div class="btn-icon">→</div>
+            </button>
+          </div>
+
+          <!-- Evolução do Humor -->
+          <div class="card chart-card">
+            <div class="card-header">
+              <div class="card-icon chart-icon">📊</div>
+              <div class="card-title">Evolução do Humor</div>
+            </div>
+            <div class="chart-container">
+              <div class="chart-bar" style="height: 60%"></div>
+              <div class="chart-bar" style="height: 75%"></div>
+              <div class="chart-bar" style="height: 45%"></div>
+              <div class="chart-bar" style="height: 90%"></div>
+              <div class="chart-bar" style="height: 85%"></div>
+              <div class="chart-bar" style="height: 70%"></div>
+              <div class="chart-bar" style="height: 95%"></div>
+            </div>
+            <div class="chart-info">
+              <span>Últimos 7 dias</span>
+              <div class="trend-indicator positive">↗ Tendência positiva</div>
+            </div>
+          </div>
+
+          <!-- Tarefas Pendentes -->
+          <div class="card tasks-card">
+            <div class="card-header">
+              <div class="card-icon tasks-icon">✅</div>
+              <div class="card-title">Tarefas Pendentes</div>
+            </div>
+            <div class="tasks-list">
+              <div class="task-item">
+                <div class="task-checkbox checked" data-task="0"></div>
+                <div class="task-text">
+                  Fazer exercício de respiração (5 min)
+                </div>
+                <div class="task-priority high"></div>
+              </div>
+              <div class="task-item">
+                <div class="task-checkbox" data-task="1"></div>
+                <div class="task-text">Registrar humor do dia</div>
+                <div class="task-priority medium"></div>
+              </div>
+              <div class="task-item">
+                <div class="task-checkbox" data-task="2"></div>
+                <div class="task-text">Ler artigo sobre mindfulness</div>
+                <div class="task-priority low"></div>
+              </div>
+              <div class="task-item">
+                <div class="task-checkbox" data-task="3"></div>
+                <div class="task-text">Praticar gratidão (3 coisas)</div>
+                <div class="task-priority high"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tela de Notas Pessoais -->
+    <div class="notes-screen" id="notesScreen">
+      <div class="container">
+        <div class="notes-header">
+          <h2>📝 Notas Pessoais</h2>
+          <p>Registre seus pensamentos e reflexões</p>
+        </div>
+
+        <div class="notes-content">
+          <div class="new-note-section">
+            <input
+              type="text"
+              id="noteTitle"
+              placeholder="Título da nota..."
+              maxlength="50"
+            />
+            <textarea
+              id="noteContent"
+              placeholder="Escreva sua nota aqui..."
+              rows="5"
+            ></textarea>
+            <div class="note-actions">
+              <button class="save-note-btn" id="saveNoteBtn">
+                Salvar Nota
+              </button>
+              <button class="clear-note-btn" id="clearNoteBtn">Limpar</button>
+            </div>
+          </div>
+
+          <div class="notes-list" id="notesList">
+            <div class="empty-notes">
+              <div class="empty-icon">📝</div>
+              <p>Nenhuma nota ainda. Comece escrevendo sua primeira nota!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation" id="navigation">
+      <button class="nav-btn active" data-screen="dashboard">
+        <div class="nav-icon">🏠</div>
+        <span>Início</span>
+      </button>
+      <button class="nav-btn" data-screen="progress">
+        <div class="nav-icon">📊</div>
+        <span>Progresso</span>
+      </button>
+      <button class="nav-btn" data-screen="chat">
+        <div class="nav-icon">💬</div>
+        <span>Chat</span>
+      </button>
+      <button class="nav-btn" data-screen="notes">
+        <div class="nav-icon">📝</div>
+        <span>Notas</span>
+      </button>
+      <button class="nav-btn" data-screen="settings">
+        <div class="nav-icon">⚙️</div>
+        <span>Config</span>
+      </button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
