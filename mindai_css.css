@@ -511,12 +511,31 @@ body {
   transition: var(--transition);
   display: flex;
   flex-direction: column;
+  position: relative; /* Adicionado para posicionar a barra */
+  overflow: hidden; /* Adicionado para conter a barra */
 }
 
 .card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-medium);
 }
+
+/* ===== NOVA ANIMAÇÃO DA BARRA LARANJA (INÍCIO) ===== */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0; /* Começa invisível */
+  background: var(--gradient-orange);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover::before {
+  width: 100%; /* Expande para 100% no hover */
+}
+/* ===== NOVA ANIMAÇÃO DA BARRA LARANJA (FIM) ===== */
 
 .card-header {
   display: flex;
@@ -691,14 +710,13 @@ body {
   gap: 8px;
 }
 
-/* ===== CÓDIGO CORRIGIDO (INÍCIO) ===== */
 .chart-bar {
   width: 12%;
   border-radius: 5px 5px 0 0;
   background: var(--gradient-blue);
   position: relative;
   overflow: hidden;
-  /* A animação de subir foi REMOVIDA daqui */
+  transition: none;
 }
 
 .chart-bar::before {
@@ -713,13 +731,13 @@ body {
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* A regra .chart-bar:hover foi completamente REMOVIDA */
+.chart-bar:hover {
+  transform: none !important;
+}
 
 .chart-bar:hover::before {
   opacity: 1;
 }
-/* ===== CÓDIGO CORRIGIDO (FIM) ===== */
-
 
 .chart-info {
   display: flex;
